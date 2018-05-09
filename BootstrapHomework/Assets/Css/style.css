@@ -1,0 +1,154 @@
+.navbar-nav {
+    margin: 0 0 0 auto;
+}
+
+.navbar-thin {
+    width: 960px;
+}
+
+.navbarContainer {
+    background: white;
+    position: fixed;
+    width: 100%;
+    height: 66.66667px;
+    top: 0;
+    left: 0;
+    border-bottom: 2px solid gray;
+    z-index: 100;
+}
+
+.navbar {
+    width: 960px;
+    margin: 0 auto;
+    padding: 0;
+    border-bottom: 2px solid gray;
+}
+
+body .navbar .navbar-brand {
+    background:#e9ecef;
+    color:black;
+    font-size: 30px;
+    padding: 10px;
+}
+
+body {
+    padding: 8rem;
+    background: url(https://ideasphere.com/wp-content/uploads/2016/08/Savin-NY-Website-Background-Web-1-1024x576.jpg);
+    
+    /* Full height */
+    height: 100%;
+
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* About Me */
+.aboutMe {
+    font-size: 35px;
+    color: black;
+    width: 100%;
+    padding-top: 10px;
+    margin:0 auto;
+    background-color: white;
+    height: 60px;
+    font-family: sans-serif;
+    border-bottom: 2px solid gray;
+
+}.image{
+    float: left;
+    padding-right:15px;
+    padding-bottom:15px;
+}
+
+/* Words */
+.words {
+    line-height: 25px;
+    font-family: sans-serif;
+    font-size: 14px;
+    font-weight:normal;
+}
+
+.btn-primary {
+    background: black;
+    color: white;
+    border: 2px solid black;
+}
+
+/*Hangman Game */
+.hangman {
+    background: url(https://i.ytimg.com/vi/r91yPViqRX0/maxresdefault.jpg);
+    height: 300px;
+    background-size: 100% 100%;
+}
+.hangmanText {
+    text-align: center;
+    font-size: 18px;
+    font-family: sans-serif;
+    font-weight: bold;
+    color:#e9ecef;
+    background: black;
+}
+
+/*RPG Game */
+.rpg {
+    background: url(https://i.ytimg.com/vi/mXImumi6M10/maxresdefault.jpg);
+    height: 300px;
+    background-size: 100% 100%;
+}
+
+.rpgText {
+    text-align: center;
+    font-size: 18px;
+    font-family: sans-serif;
+    font-weight: bold;
+    color:#e9ecef;
+    background: black;
+}
+.trivia {
+    background: url(data:image/jpeg;base64,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);
+    height: 300px;
+    background-size: 100% 100%;
+}
+.triviaText {
+    text-align: center;
+    font-size: 18px;
+    font-family: sans-serif;
+    font-weight: bold;
+    color:#e9ecef;
+    background: black;
+}
+.widget {
+    background: url(https://beta.techcrunch.com/wp-content/uploads/2006/11/springwidgets565.jpg);
+    height: 300px;
+    background-size: 100% 100%;
+}
+.infoText {
+    text-align: center;
+    font-size: 18px;
+    font-family: sans-serif;
+    font-weight: bold;
+    color:#e9ecef;
+    background: black;
+}
+.rpsGame {
+    background: url(https://ksr-ugc.imgix.net/assets/017/463/773/8d140829dc9e9ece410e84419c73453e_original.png?crop=faces&w=1552&h=873&fit=crop&v=1499794689&auto=format&q=92&s=87d5e1fb26e6f6550ef63efc1fb59eb8);
+    height: 300px;
+    background-size: 100% 100%;
+}
+.rpsText {
+    text-align: center;
+    font-size: 18px;
+    font-family: sans-serif;
+    font-weight: bold;
+    color:#e9ecef;
+    background: black;
+}
+.row {
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
