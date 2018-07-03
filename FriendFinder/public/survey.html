@@ -28,7 +28,7 @@
                     <h3>Question 1</h3>
                     <h5>Do you enjoy beer?</h5>
                     <select id="question1">
-                        <option value="" disabled selected>Choose your option</option>
+                        <option value="" selected>Choose your option</option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -41,7 +41,7 @@
                     <h3>Question 2</h3>
                     <h5>Do you feel our economy is doing well?</h5>
                     <select id="question2">
-                        <option value="" disabled selected>Choose your option</option>
+                        <option value="" selected>Choose your option</option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -54,7 +54,7 @@
                     <h3>Question 3</h3>
                     <h5>Do you like coffee in the morning?</h5>
                     <select id="question3">
-                        <option value="" disabled selected>Choose your option</option>
+                        <option value="" selected>Choose your option</option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -67,7 +67,7 @@
                     <h3>Question 4</h3>
                     <h5>How much do you enjoy sleeping each night?</h5>
                     <select id="question4">
-                        <option value="" disabled selected>Choose your option</option>
+                        <option value="" selected>Choose your option</option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -80,7 +80,7 @@
                     <h3>Question 5</h3>
                     <h5>When driving in traffic, are you calm?</h5>
                     <select id="question5">
-                        <option value="" disabled selected>Choose your option</option>
+                        <option value="" selected>Choose your option</option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -93,7 +93,7 @@
                     <h3>Question 6</h3>
                     <h5>How much do you enjoy food?</h5>
                     <select id="question6">
-                        <option value="" disabled selected>Choose your option</option>
+                        <option value="" selected>Choose your option</option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -106,7 +106,7 @@
                     <h3>Question 7</h3>
                     <h5>Do you like motorcycles?</h5>
                     <select id="question7">
-                        <option value="" disabled selected>Choose your option</option>
+                        <option value="" selected>Choose your option</option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -119,7 +119,7 @@
                     <h3>Question 8</h3>
                     <h5>How much do you like camping?</h5>
                     <select id="question8">
-                        <option value="" disabled selected>Choose your option</option>
+                        <option value="" selected>Choose your option</option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -132,7 +132,7 @@
                     <h3>Question 9</h3>
                     <h5>Do you feel that the world is going in a good direction?</h5>
                     <select id="question9">
-                        <option value="" disabled selected>Choose your option</option>
+                        <option value="" selected>Choose your option</option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -145,7 +145,7 @@
                     <h3>Question 10</h3>
                     <h5>You're a huge fan of traveling the world.</h5>
                     <select id="question10">
-                        <option value="" disabled selected>Choose your option</option>
+                        <option value="" selected>Choose your option</option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -166,7 +166,7 @@
             <h4>Closest Friend Match</h4>
             <div class="divider"></div>
             <h5 id="userMatch"></h5>
-            <img id="userMatchImage" class="materialboxed" width="650" src="">
+            <img id="userMatchImage" class="materialboxed" width="300" src="">
         </div>
         <div>
             <a href="survey.html" class="modal-action modal-close waves-effect waves-green btn-flat">Fill Again!</a>
@@ -175,21 +175,12 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $('select').material_select();
-            $('.modal').modal({
-                dismissible: false,
-                opacity: .5,
-                inDuration: 300,
-                outDuration: 200,
-                startingTop: '4%',
-                endingTop: '10%'
-            });
+
         });
         $('#submitButton').on('click', function (event) {
             event.preventDefault();
             var userInput = {
                 name: $('#userName').val().trim(),
-                photo: $('#userPhoto').val().trim(),
                 scores: [
                     $('#question1').val().trim(),
                     $('#question2').val().trim(),
@@ -204,10 +195,25 @@
                 ]
             };
             $.post('/api/friends', userInput)
-                .done(function (data) {
-                    $('#userMatch').html(data.matchName);
-                    $("#userMatchImage").attr("src", data.matchImage);
-                    $('#modal1').modal('open');
+                .done(function (res) {
+                    console.log(res);
+                    var bestFriendScore = 1000
+                    var bestFriend = "none"
+                    var bestFriendImage = ""
+                    for (i = 0; i < res.length; i++) {
+                        var currentScore = 0;
+                        for (j = 0; j < 10; j++) {
+                            currentScore = currentScore + Math.abs(userInput.scores[j] - res[i].scores[j])
+                        }
+                        if (currentScore < bestFriendScore) {
+                            bestFriendScore = currentScore
+                            bestFriend = res[i].name
+                            bestFriendImage = res[i].photo
+                        }
+                    }
+                    $('#userMatch').text(bestFriend);
+                    $('#userMatchImage').attr("src", bestFriendImage);
+                    $('.modal').show()
                 });
         });
     </script>
