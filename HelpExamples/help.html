@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HELP!</title>
+</head>
+
+<body>
+
+    <button type="button" id="jBtn" class="btn btn-warning">Warning</button>
+    <div id="root"></div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+        crossorigin="anonymous"></script>
+    <script>
+        //step one: create array
+        var something = ["!", "A", "pleasure", "to",  "meet",  "you!"];
+
+        //step two: setup click function for button
+        $("#jBtn").click(function () {
+            // if this button is clicked, then the code below executes until }); is closed
+            // $("#root").html("<h1>Hello friends!</h1>"); //one way to do it!
+            //another way to do it!
+            var whatever = $("<div>"); //creating an html element
+            whatever.text("A pleasure to meet you!"); //adding text to "whatever" element
+            $("#root").append(whatever); //
+
+        });
+    </script>
+</body>
+
+</html>
